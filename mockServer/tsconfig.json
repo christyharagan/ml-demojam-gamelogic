@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "rootDir": "./src",
+        "sourceMap": true,
+        "sourceRoot": ".",
+        "target": "ES6",
+        "outDir": ".",
+        "experimentalDecorators": true
+    },
+    "compileOnSave": true,
+    "formatCodeOptions": {
+        "indentSize": 2,
+        "tabSize": 2
+    },
+    "filesGlob": [
+        "./src/**/*.ts",
+        "./typings/**/*.d.ts"
+    ],
+    "files": [
+        "./src/lib/index.ts",
+        "./typings/es6/es6.d.ts",
+        "./typings/node/node.d.ts",
+        "./typings/socket.io/socket.io.d.ts",
+        "./typings/tsd.d.ts"
+    ]
+}
