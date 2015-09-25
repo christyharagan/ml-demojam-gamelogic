@@ -217,7 +217,6 @@ public class GameController : MonoBehaviour
 
 	void StartRound()
 	{
-		Debug.Log ("here to start");
 		serverControl.Register ("deepti");
 		enemiesKilledText.gameObject.SetActive(false);
 		asteroidsDestroyedText.gameObject.SetActive(false);
@@ -290,11 +289,13 @@ public class GameController : MonoBehaviour
 	public void OnEnemyKilled()
 	{
 		m_enemiesKilledThisRound++;
+		serverControl.Increment_Score (20, 0);
 	}
 
 	public void OnAsteroidDestroyed()
 	{
 		m_asteroidsDestroyedThisRound++;
+		serverControl.Increment_Score (10, 1);
 	}
 
 	public void OnShotFired()

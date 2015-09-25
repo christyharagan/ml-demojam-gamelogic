@@ -36,6 +36,7 @@ public class DestroyByContact : MonoBehaviour
 			Instantiate(explosion, transform.position, transform.rotation);
 		}
 
+		Debug.Log ("scoreValue: " + scoreValue);
 		gameController.AddScore(scoreValue);
 
 		if (other.CompareTag("Player"))

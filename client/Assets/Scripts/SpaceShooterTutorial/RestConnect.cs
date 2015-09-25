@@ -24,12 +24,12 @@ public class RestConnect : MonoBehaviour{
 		return (RestConnect)r_instance;
 	}
 
-	public WWW GET(string url)
+	public string GET(string url)
 	{
-		Debug.Log ("getting the data: " + url);
+//		Debug.Log ("getting the data: " + url);
 		WWW www = new WWW (url);
 		StartCoroutine (WaitForRequest (www));
-		return www; 
+		return www.text; 
 	}
 
 
@@ -45,15 +45,13 @@ public class RestConnect : MonoBehaviour{
 		WWW www = new WWW(urlPost, form);
 		
 		StartCoroutine(WaitForRequest(www));
-		Debug.Log ("this is the end of post data");
+//		Debug.Log ("this is the end of post data");
 		return www; 
 	}
 	
 	private IEnumerator WaitForRequest(WWW www)
 	{
-		Debug.Log ("waiting for request");
-		yield return www;
-		
+		yield return www;		
 		// check for errors
 		if (www.error == null)
 		{
