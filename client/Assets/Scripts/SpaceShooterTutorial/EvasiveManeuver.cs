@@ -46,9 +46,7 @@ public class EvasiveManeuver : MonoBehaviour
 			0.0f, 
 			Mathf.Clamp(rigidbody.position.z, boundary.zMin, boundary.zMax)
 		);
-		if (!rigidbody.CompareTag("Powerup1") || !rigidbody.CompareTag("Powerup2")) {
-			Debug.Log ("moving a bit around here");
+		if(!rigidbody.CompareTag("Powerup1") || !rigidbody.CompareTag("Powerup2"))
 			rigidbody.rotation = Quaternion.Euler (0, 0, rigidbody.velocity.x * -tilt);
-		}
 	}
 }

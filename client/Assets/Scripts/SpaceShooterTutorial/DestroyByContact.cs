@@ -23,22 +23,21 @@ public class DestroyByContact : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
-		if(other.CompareTag("Boundary") || other.CompareTag("Enemy") 
-		         || other.CompareTag("Powerup1") || other.CompareTag("Powerup2"))
+
+
+		if (other.CompareTag("Boundary") || other.CompareTag("Enemy") || other.CompareTag("Powerup1") || other.CompareTag("Powerup2"))
 		{
-			Debug.Log ("this is the return function: " + other.tag);
 			return;
 		}
 
 		if (explosion != null)
 		{
+			Debug.Log ("explosion: " + explosion.gameObject.name);
 			Instantiate(explosion, transform.position, transform.rotation);
 		}
 
 		gameController.AddScore(scoreValue);
-//		if (other.CompareTag("Undefined")) {
-//			Debug.Log("undefined is this: " + other.tag);
-//		}
+
 		if (other.CompareTag("Player"))
 		{
 			Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
@@ -47,7 +46,6 @@ public class DestroyByContact : MonoBehaviour
 
 		if (gameObject.name.StartsWith("Enemy Ship"))
 		{
-			Debug.Log ("why is it coming here : " + gameObject.tag);
 			gameController.OnEnemyKilled();
 		}
 		else if (gameObject.name.StartsWith ("Asteroid"))

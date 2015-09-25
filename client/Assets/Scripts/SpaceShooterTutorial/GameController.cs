@@ -280,7 +280,6 @@ public class GameController : MonoBehaviour
 
 	public void OnEnemyKilled()
 	{
-		Debug.Log ("Enemy killed here");
 		m_enemiesKilledThisRound++;
 	}
 
