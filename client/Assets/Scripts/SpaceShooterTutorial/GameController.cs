@@ -134,6 +134,8 @@ public class GameController : MonoBehaviour
 	private float m_gameOverTime;
 	private float m_scoreTime;
 
+	private ServerControl serverControl;
+
 	void Start ()
 	{
 		if (!BrainCloudWrapper.GetBC ().IsAuthenticated())
@@ -145,6 +147,8 @@ public class GameController : MonoBehaviour
 			UpdateScoreText();
 			ReadStatistics();
 		}
+		serverControl = new ServerControl ();
+
 	}
 
 	void Update ()
@@ -213,6 +217,8 @@ public class GameController : MonoBehaviour
 
 	void StartRound()
 	{
+		Debug.Log ("here to start");
+		serverControl.Register ("deepti");
 		enemiesKilledText.gameObject.SetActive(false);
 		asteroidsDestroyedText.gameObject.SetActive(false);
 		shotsFiredText.gameObject.SetActive(false);
@@ -236,6 +242,8 @@ public class GameController : MonoBehaviour
 		m_playState = ePlayState.PLAY_STATE_STARTUP;
 		m_startupTime = startWait;
 
+		Debug.Log ("here in start round");
+
 		SpawnPlayer();
 	}
 
@@ -258,6 +266,7 @@ public class GameController : MonoBehaviour
 		Vector3 spawnPosition = new Vector3 (UnityEngine.Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
 		Quaternion spawnRotation = Quaternion.identity;
 		Instantiate (hazard, spawnPosition, spawnRotation);
+		Debug.Log ("hazard: " + hazard);
 	}
 
 	public void AddScore (int newScoreValue)
