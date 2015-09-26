@@ -4,20 +4,22 @@ using System.Collections;
 public class GameLogin : MonoBehaviour {
 
 	private string m_username = "";
-	private string m_password = "";
+//	private string m_password = "";
 
 	private Vector2 m_scrollPosition;
 
 	private string m_authStatus = "Welcome to GameLogic";
+	private ServerControl serverControl;
 
 
 	// Use this for initialization
 	void Start () {
 		m_username = PlayerPrefs.GetString("username");
+		serverControl = new ServerControl ();
 		
 		// Stores the password in plain text directly in the unity store.
 		// This is obviously not secure but speeds up debugging/testing.
-		m_password = PlayerPrefs.GetString("password");
+//		m_password = PlayerPrefs.GetString("password");
 	}
 
 	void OnGUI()
@@ -43,30 +45,32 @@ public class GameLogin : MonoBehaviour {
 		GUILayout.Label ("Username");
 		m_username = GUILayout.TextField (m_username, GUILayout.MinWidth (200));
 		
-		GUILayout.Label ("Password");
-		m_password = GUILayout.PasswordField (m_password, '*', GUILayout.MinWidth (100));
+//		GUILayout.Label ("Password");
+//		m_password = GUILayout.PasswordField (m_password, '*', GUILayout.MinWidth (100));
 		
 		GUILayout.Space (10);
 		
 		GUILayout.BeginHorizontal ();
 		GUILayout.FlexibleSpace();
 		
-		if (GUILayout.Button ("Authenticate", GUILayout.MinHeight (30), GUILayout.MinWidth (100))) 
+		if (GUILayout.Button ("Login", GUILayout.MinHeight (30), GUILayout.MinWidth (100))) 
 		{
-			if( m_username.Length == 0 || m_password.Length == 0 )
+			if( m_username.Length == 0)
 			{
-				Debug.Log("Username/password can't be empty");
+				Debug.Log("Username can't be empty");
 			}
 			else 
 			{
 				Debug.Log("Attempting to authenticate...");
 				PlayerPrefs.SetString("username", m_username);
-				PlayerPrefs.SetString("password", m_password);
+//				PlayerPrefs.SetString("password", m_password);
 				
 				///////////////////////////////////////////////////////////////////
 				// brainCloud authentication
 				///////////////////////////////////////////////////////////////////
 				Debug.Log("will send to server now");
+				m_authStatus = "Connecting to server...";
+				serverControl.Register (m_username);
 				Sucess_Done();
 //				BrainCloudWrapper.GetInstance().AuthenticateUniversal(m_username, m_password, true, OnSuccess_Authenticate, OnError_Authenticate);
 				
@@ -99,6 +103,7 @@ public class GameLogin : MonoBehaviour {
 
 	public void Sucess_Done() {
 		Debug.Log ("Success");
+		m_authStatus = "Connected.";
 		Application.LoadLevel("Game");
 	}
 

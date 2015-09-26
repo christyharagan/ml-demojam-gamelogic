@@ -13,10 +13,10 @@ public class GameController : MonoBehaviour
 	private void ReadStatistics()
 	{
 		// Ask brainCloud for statistics
-		BrainCloudWrapper.GetBC().PlayerStatisticsService.ReadAllPlayerStats(StatsSuccess_Callback, StatsFailure_Callback, null);
+//		BrainCloudWrapper.GetBC().PlayerStatisticsService.ReadAllPlayerStats(StatsSuccess_Callback, StatsFailure_Callback, null);
 		
-		brainCloudStatusText.text = "Reading statistics from brainCloud...";
-		brainCloudStatusText.gameObject.SetActive(true);
+//		brainCloudStatusText.text = "Reading statistics from brainCloud...";
+//		brainCloudStatusText.gameObject.SetActive(true);
 	}
 
 	private void SaveStatisticsToBrainCloud()
@@ -33,8 +33,8 @@ public class GameController : MonoBehaviour
 		BrainCloudWrapper.GetBC().PlayerStatisticsService.IncrementPlayerStats(
 			stats, StatsSuccess_Callback, StatsFailure_Callback, null);
 
-		brainCloudStatusText.text = "Incrementing statistics on brainCloud...";
-		brainCloudStatusText.gameObject.SetActive(true);
+//		brainCloudStatusText.text = "Incrementing statistics on brainCloud...";
+//		brainCloudStatusText.gameObject.SetActive(true);
 	}
 
 	private void StatsSuccess_Callback(string responseData, object cbObject)
@@ -49,19 +49,14 @@ public class GameController : MonoBehaviour
 		m_statGamesPlayed = int.Parse(entries["gamesPlayed"].ToString());
 
 		ShowStatistics();
-
-		if (brainCloudStatusText)
-		{
-			brainCloudStatusText.text = "Sync'd with brainCloud";
-		}
 	}
 	
 	private void StatsFailure_Callback(int statusCode, int reasonCode, string statusMessage, object cbObject)
 	{
-		if (brainCloudStatusText)
-		{
-			brainCloudStatusText.text = "Failed to increment stats on brainCloud";
-		}
+//		if (brainCloudStatusText)
+//		{
+//			brainCloudStatusText.text = "Failed to increment stats on brainCloud";
+//		}
 		Debug.Log (statusMessage);
 	}
 	////////////////////////////////////////////
@@ -84,7 +79,7 @@ public class GameController : MonoBehaviour
 	public GUIText restartText;
 	public GUIText gameOverText;
 	public GUIText clickToStartText;
-	public GUIText brainCloudStatusText;
+//	public GUIText brainCloudStatusText;
 	public GUIText enemiesKilledText;
 	public GUIText asteroidsDestroyedText;
 	public GUIText accuracyText;
@@ -138,14 +133,14 @@ public class GameController : MonoBehaviour
 
 	void Start ()
 	{
-		if (!BrainCloudWrapper.GetBC ().IsAuthenticated())
+//		if (!BrainCloudWrapper.GetBC ().IsAuthenticated())
 		{
-			Application.LoadLevel("BrainCloudConnect");
+//			Application.LoadLevel("Login");
 		}
-		else
+//		else
 		{
 			UpdateScoreText();
-			ReadStatistics();
+//			ReadStatistics();
 		}
 		serverControl = new ServerControl ();
 
@@ -203,7 +198,7 @@ public class GameController : MonoBehaviour
 				clickToStartText.text = "Click to Restart";
 				clickToStartText.gameObject.SetActive(true);
 
-				SaveStatisticsToBrainCloud();
+				SaveStatisticsLocally();
 			}
 			break;
 		case eGameState.GAME_STATE_SCORE_SCREEN:
@@ -217,14 +212,13 @@ public class GameController : MonoBehaviour
 
 	void StartRound()
 	{
-		serverControl.Register ("deepti");
 		enemiesKilledText.gameObject.SetActive(false);
 		asteroidsDestroyedText.gameObject.SetActive(false);
 		shotsFiredText.gameObject.SetActive(false);
 		accuracyText.gameObject.SetActive(false);
 		gamesPlayedText.gameObject.SetActive(false);
 		clickToStartText.gameObject.SetActive(false);
-		brainCloudStatusText.gameObject.SetActive(false);
+//		brainCloudStatusText.gameObject.SetActive(false);
 		scoreText.gameObject.SetActive(true);
 
 		m_enemiesKilledThisRound = 0;
@@ -301,6 +295,7 @@ public class GameController : MonoBehaviour
 	public void OnShotFired()
 	{
 		m_shotsFiredThisRound++;
+		Debug.Log ("Shots fired: " + m_shotsFiredThisRound);
 	}
 
 	private void SaveStatisticsLocally()
