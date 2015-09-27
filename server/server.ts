@@ -1,46 +1,47 @@
-import {Server} from 'markscript-koa'
-import {PlayService} from './lib/services/playService'
-import {PreperationService} from './lib/services/preperationService'
-import {Answer} from './lib/models/answer'
-import {Statement} from './lib/models/statement'
-import {ResultsService} from './lib/services/resultsService'
+'use strict'
 
-export function clear(server: Server) {
-  let preperationService = <PreperationService>server.getService('preperation')
-  return preperationService.clear()
-}
+let http  = require('http')
+let io = require('socket.io')
+let koa = require('koa')
+let cors = require('koa-cors')
+let Router = require('koa-router')
+let koaBody = require('koa-body')()
 
-export function loadAnswers(server: Server, answers: Answer[]) {
-  let preperationService = <PreperationService>server.getService('preperation')
-  return preperationService.loadAnswers(answers)
-}
+let app = koa()
+app.use(cors())
 
-export function loadPremises(server: Server, premises: Statement[]) {
-  let preperationService = <PreperationService>server.getService('preperation')
-  return preperationService.loadPremises(premises)
-}
+let router = new Router({})
 
-export function getAnswers(server: Server) {
-  let playService = <PlayService>server.getService('play')
-  return playService.getPossibleAnswers()
-}
+router.get('register', koaBody, function* (next) {
+  console.log('In register')
+  console.log('Player name: ' + this.params.name)
+  yield* next
+})
+router.get('incrementScore', koaBody, function* (next) {
+  console.log('In increment score')
+  console.log('Player name: ' + this.params.name)
+  console.log('Increment: ' + this.params.increment)
+  console.log('Object type: ' + this.params.objectType)
+  yield* next
+})
 
-export function submitAnswer(server: Server, answerId: number) {
-  let playService = <PlayService>server.getService('play')
-  return playService.submitAnswer(answerId)
-}
+app.use(router.routes())
 
-export function getPremises(server: Server) {
-  let playService = <PlayService>server.getService('play')
-  return playService.getPremises()
-}
+let fn = app.callback()
 
-export function getResults(server: Server) {
-  let resultsService = <ResultsService>server.getService('results')
-  return resultsService.getResults()
-}
+let httpServer = http.createServer(fn)
+let ioServer = io(httpServer)
 
-export function updateResults(server: Server) {
-  let resultsService = <ResultsService>server.getService('results')
-  return resultsService.updateResults()
+function emitRandomRank() {
+  ioServer.emit('updateRanking', Math.floor(Math.random() * 10))
+  setTimeout(emitRandomRank, 500)
 }
+setTimeout(emitRandomRank, 500)
+
+httpServer.listen(8080, 'localhost', function(err) {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log('Server running on http://localhost:8080')
+  }
+})
