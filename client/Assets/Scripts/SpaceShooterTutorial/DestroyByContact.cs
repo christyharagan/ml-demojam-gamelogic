@@ -32,11 +32,11 @@ public class DestroyByContact : MonoBehaviour
 
 		if (explosion != null)
 		{
-			Debug.Log ("explosion: " + explosion.gameObject.name);
+//			Debug.Log ("explosion: " + explosion.gameObject.name);
 			Instantiate(explosion, transform.position, transform.rotation);
 		}
 
-		Debug.Log ("scoreValue: " + scoreValue);
+//		Debug.Log ("scoreValue: " + scoreValue);
 		gameController.AddScore(scoreValue);
 
 		if (other.CompareTag("Player"))

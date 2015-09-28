@@ -21,13 +21,13 @@ public class ServerControl {
 
 	public void Register(string userName) {
 		this.userId = userName;
-		string registerUrl = "register?name=" + userName;
-		RestConnect.Instance().POST (registerUrl);
-//		string response = RestConnect.Instance().GET ("http://localhost:8888/rest/destinations/getPlaceId/Goa");
-		client.Send("post done");
+		string registerUrl = "register/" + userName;
+		Debug.Log ("in register right now");
+		RestConnect.Instance().GET (registerUrl);
 	}
 
 	private void SocketMessage (object sender, MessageEventArgs e) {
+		Debug.Log ("we have a message here: ");
 		if ( e!= null && e.Message.Event == "updateRanking") {
 			string msg = e.Message.MessageText;
 			Update_Ranking(msg);
@@ -35,10 +35,8 @@ public class ServerControl {
 	}
 
 	public void Increment_Score(int score, int type) {
-		if (userId != null) {
-			string incrementScoreUrl = "incrementScore?name="+ userId + "&increment=" + score + "&objectType="+type;
-			RestConnect.Instance().POST (incrementScoreUrl);
-		}
+		string incrementScoreUrl = "incrementScore/"+ PlayerPrefs.GetString("username") + "/" + score;// + "&objectType="+type;
+		RestConnect.Instance().GET (incrementScoreUrl);
 	}
 
 	public void Update_Ranking(string message) {

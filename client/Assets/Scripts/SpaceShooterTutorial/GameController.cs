@@ -235,7 +235,7 @@ public class GameController : MonoBehaviour
 		m_playState = ePlayState.PLAY_STATE_STARTUP;
 		m_startupTime = startWait;
 
-		Debug.Log ("here in start round");
+//		Debug.Log ("here in start round");
 
 		SpawnPlayer();
 	}
@@ -259,7 +259,7 @@ public class GameController : MonoBehaviour
 		Vector3 spawnPosition = new Vector3 (UnityEngine.Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
 		Quaternion spawnRotation = Quaternion.identity;
 		Instantiate (hazard, spawnPosition, spawnRotation);
-		Debug.Log ("hazard: " + hazard);
+//		Debug.Log ("hazard: " + hazard);
 	}
 
 	public void AddScore (int newScoreValue)
@@ -283,19 +283,21 @@ public class GameController : MonoBehaviour
 	public void OnEnemyKilled()
 	{
 		m_enemiesKilledThisRound++;
+		Debug.Log ("Ship: ");
 		serverControl.Increment_Score (20, 0);
 	}
 
 	public void OnAsteroidDestroyed()
 	{
 		m_asteroidsDestroyedThisRound++;
+		Debug.Log ("Asteroid: ");
 		serverControl.Increment_Score (10, 1);
 	}
 
 	public void OnShotFired()
 	{
 		m_shotsFiredThisRound++;
-		Debug.Log ("Shots fired: " + m_shotsFiredThisRound);
+//		Debug.Log ("Shots fired: " + m_shotsFiredThisRound);
 	}
 
 	private void SaveStatisticsLocally()
