@@ -19,17 +19,17 @@ public class RestConnect : MonoBehaviour{
 		{
 			GameObject gameObject = new GameObject();
 			r_instance = gameObject.AddComponent<RestConnect>();
-			hostUrl = "http://localhost:8080/playerService/";
+			hostUrl = "http://localhost:8080/";
 		}
 		return (RestConnect)r_instance;
 	}
 
-	public string GET(string url)
+	public void GET(string url)
 	{
-//		Debug.Log ("getting the data: " + url);
-		WWW www = new WWW (url);
+		string urlGet = hostUrl + url;
+		Debug.Log ("GET the data: " + urlGet);
+		WWW www = new WWW (urlGet);
 		StartCoroutine (WaitForRequest (www));
-		return www.text; 
 	}
 
 
@@ -51,7 +51,7 @@ public class RestConnect : MonoBehaviour{
 	
 	private IEnumerator WaitForRequest(WWW www)
 	{
-		yield return www;		
+		yield return www;	
 		// check for errors
 		if (www.error == null)
 		{
