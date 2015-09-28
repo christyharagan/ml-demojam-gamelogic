@@ -1,0 +1,1 @@
+{"version":3,"file":"getForests.js","sourceRoot":"./","sources":["lib/actions/forests/getForests.ts"],"names":["getForests"],"mappings":"AAAA,qBAA4B,kBAC5B,CAAC,CAD6C;AA0B9C,oBAA2B,MAAc,EAAE,IAAY;IACrDA,MAAMA,CAAwBA,oBAAaA,CAACA,MAAMA,EAAEA,gCAAgCA,EAAEA,YAAYA,CAACA,CAAAA;AACrGA,CAACA;AAFe,kBAAU,aAEzB,CAAA"}

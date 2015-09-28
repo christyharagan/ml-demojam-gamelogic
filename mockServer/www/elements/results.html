@@ -1,0 +1,16 @@
+<dom-module id="marklogic-results">
+   <template>
+   <chart-bar
+       width="400"
+       height="200"
+       labels='{{columns}}'
+       values="{{rows}}"
+       options='{"animationSteps":2}'
+       colors='[ ["253,180,92"],["247,70,74"],["70,191,189"],["148,159,177"] ]'>
+   </chart-bar>
+
+   <uservices-event service-name="leaderboard" method-name="updateRanking" args="[]" result="{{rankings}}"></uservices-event>
+   </template>
+</dom-module>
+
+<script type="text/javascript" src="results.js"></script>

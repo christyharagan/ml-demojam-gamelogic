@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Play MarkLOGIC</title>
+
+  <!-- webcomponents, polymer standard, polymer-ts -->
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="bower_components/polymer/polymer.html">
+  <link rel="import" href="bower_components/paper-item/paper-item.html">
+  <link rel="import" href="bower_components/iron-collapse/iron-collapse.html">
+  <link rel="import" href="bower_components/paper-menu/paper-menu.html">
+  <link rel="import" href="bower_components/paper-menu/paper-menu.html">
+  <link rel="import" href="bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+  <link rel="import" href="bower_components/paper-header-panel/paper-header-panel.html">
+  <link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
+  <link rel="import" href="bower_components/paper-button/paper-button.html">
+  <link rel="import" href="bower_components/paper-styles/paper-styles.html">
+  <link rel="import" href="bower_components/paper-styles/paper-styles-classes.html">
+
+  <script src="bower_components/socket.io-client/socket.io.js"></script>
+
+  <!-- custom elements -->
+  <link rel="import" href="bower_components/uservices-socket.io-client-polymer/elements/event.html">
+  <link rel="import" href="bower_components/uservices-socket.io-client-polymer/elements/method.html">
+  <link rel="import" href="elements/formatter.html">
+  <link rel="import" href="elements/play.html">
+
+  <style>
+  body {
+    font-family: 'Roboto', 'Noto', sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 24px;
+    background-color: var(--paper-grey-50);
+  }
+
+  </style>
+
+</head>
+
+<body class="fullbleed layout vertical">
+  <marklogic-play class="flex"></marklogic-play>
+</body>
+</html>

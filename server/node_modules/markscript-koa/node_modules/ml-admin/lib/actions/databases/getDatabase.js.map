@@ -1,0 +1,1 @@
+{"version":3,"file":"getDatabase.js","sourceRoot":"./","sources":["lib/actions/databases/getDatabase.ts"],"names":["getDatabase"],"mappings":"AAAA,qBAA4B,kBAC5B,CAAC,CAD6C;AAuB9C,qBAA4B,MAAc,EAAE,IAAY;IACtDA,MAAMA,CAAyBA,oBAAaA,CAACA,MAAMA,EAAEA,0BAAwBA,IAAIA,iBAAcA,EAAEA,iBAAeA,IAAMA,CAACA,CAAAA;AACzHA,CAACA;AAFe,mBAAW,cAE1B,CAAA"}

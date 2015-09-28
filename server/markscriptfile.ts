@@ -1,15 +1,15 @@
 import {BuildOptions} from 'markscript-core'
 import {UServicesPlugin, UServicesBuildOptions} from 'markscript-uservices'
-import {MLNordicDemo} from './lib/databaseModel'
+import {MLGamescriptDemo} from './src/lib/databaseModel'
 import * as path from 'path'
 import {RunOptions} from 'markscript-project'
-import {test} from './test/test'
-import {loadData} from './example/loadData'
+import {clear} from './server'
+import {test} from './src/test/test'
 
 const COMMON = {
-  appName: 'ml-nordic-demo',
+  appName: 'ml-gamescript-demo',
   ml: {
-    port: 8008,
+    port: 8012,
     host: 'localhost',
     user: 'admin',
     password: 'passw0rd'
@@ -28,8 +28,8 @@ export const buildOptions: BuildOptions = {
     configPort: 8002,
     user: COMMON.ml.user,
     password: COMMON.ml.password,
-    modelObject: new MLNordicDemo(COMMON.appName, COMMON.ml.host, COMMON.ml.port),
-    modules: './lib/**/*.ts'
+    modelObject: new MLGamescriptDemo(COMMON.appName, COMMON.ml.host, COMMON.ml.port),
+    modules: './src/lib/**/*.ts'
   },
   middle: {
     host: COMMON.koa.host,
@@ -51,11 +51,11 @@ export const runOptions: RunOptions = {
   middle: {
     host: COMMON.koa.host,
     port: COMMON.koa.port,
-    fileServerPath: '../client'
+    fileServerPath: './www'
   }
 }
 
 export const tasks = {
-  test: test,
-  loadData: loadData
+  clear: clear,
+  test: test
 }

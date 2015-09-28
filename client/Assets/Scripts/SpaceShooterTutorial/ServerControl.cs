@@ -10,7 +10,7 @@ public class ServerControl {
 		client.Opened += SocketOpened;
 		client.Message += SocketMessage;
 //		client.SocketConnectionClosed += SocketConnectionClosed;
-//		client.Error +=SocketError;		
+//		client.Error +=SocketError;
 		client.Connect();
 	}
 
@@ -21,8 +21,8 @@ public class ServerControl {
 
 	public void Register(string userName) {
 		this.userId = userName;
-		string registerUrl = "register?name=" + userName;
-		RestConnect.Instance().POST (registerUrl);
+		string registerUrl = "register/" + userName;
+		RestConnect.Instance().GET (registerUrl);
 //		string response = RestConnect.Instance().GET ("http://localhost:8888/rest/destinations/getPlaceId/Goa");
 		client.Send("post done");
 	}
@@ -36,7 +36,7 @@ public class ServerControl {
 
 	public void Increment_Score(int score, int type) {
 		if (userId != null) {
-			string incrementScoreUrl = "incrementScore?name="+ userId + "&increment=" + score + "&objectType="+type;
+			string incrementScoreUrl = "incrementScore/"+ userId + "/" + score;// + "&objectType="+type;
 			RestConnect.Instance().POST (incrementScoreUrl);
 		}
 	}
