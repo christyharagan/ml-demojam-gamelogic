@@ -1,7 +1,5 @@
-import {mlService, mlMethod, mlEvent, resolve, AbstractMLService, Doc} from 'markscript-uservices'
-import {Observable} from 'uservices'
-import {deleteAll} from 'markscript-core'
-import {Ranks} from '../models/scores'
+import {Observable, mlService, mlMethod, mlEvent, resolve, AbstractMLService, Doc, METHOD} from 'markscript-uservices'
+import {deleteAll} from 'markscript-basic'
 
 enum ObjectType {
   ASTEROID,
@@ -14,9 +12,9 @@ interface Player {
 }
 
 @mlService('player')
-export class PlayerService extends AbstractMLService {
+export class PlayerService extends AbstractMLService implements GameLogic.PlayerService {
 
-  @mlMethod()
+  @mlMethod({method: METHOD.PUT})
   prepare(): Promise<boolean> {
     deleteAll('/players')
 
@@ -27,7 +25,7 @@ export class PlayerService extends AbstractMLService {
     return resolve(true)
   }
 
-  @mlMethod()
+  @mlMethod({method: METHOD.PUT})
   register(name: string): Promise<boolean> {
     xdmp.documentInsert(`/players/${name}.json`, {
       score: 0,
@@ -36,14 +34,14 @@ export class PlayerService extends AbstractMLService {
     return resolve(true)
   }
 
-  @mlMethod()
+  @mlMethod({method: METHOD.PUT})
   incrementScore(name: string, increment: number, objectType: ObjectType): Promise<boolean> {
     let player = <Player>cts.doc(`/players/${name}.json`).root.toObject()
 
     let score = player.score + increment
     player.score = score
 
-    let ranks = (<Ranks>cts.doc(`/ranking/players.json`).root.toObject()).ranks
+    let ranks = (<GameLogic.Ranks>cts.doc(`/ranking/players.json`).root.toObject()).ranks
 
     if (ranks.length === 0) {
       ranks = [[name, score]]
@@ -74,7 +72,7 @@ export class PlayerService extends AbstractMLService {
     scope: '/ranking'
   })
   updateRanking(): Observable<[string, number][]> {
-    return this.observableFactory().map(function(value: Doc<Ranks>) {
+    return this.observableFactory().map(function(value: Doc<GameLogic.Ranks>) {
       return value.content.root.ranks
     })
   }

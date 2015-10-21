@@ -1,7 +1,7 @@
 require('should')
 require('should-promised')
 
-import {createAdminClient, AdminConnectionParams} from '../../../lib/adminClient'
+import {createTestClient} from '../../createTestClient'
 import {getLastRestartTimestamp} from '../../../lib/actions/admin/getLastRestartTimestamp'
 
 describe('getLastRestartTimestamp', function() {
@@ -11,10 +11,5 @@ describe('getLastRestartTimestamp', function() {
 })
 
 export function returnAValidTimeStamp() {
-  let connectionParams: AdminConnectionParams = {
-    password: 'passw0rd'
-  }
-  let client = createAdminClient(connectionParams)
-
-  return getLastRestartTimestamp(client)
+  return getLastRestartTimestamp(createTestClient())
 }

@@ -1,2 +1,2 @@
-import { Client } from 'marklogic';
-export declare function deleteDatabase(client: Client, name: string): Promise<any>;
+import { DatabaseClient } from 'marklogic';
+export declare function deleteDatabase(client: DatabaseClient, name: string): Promise<any>;

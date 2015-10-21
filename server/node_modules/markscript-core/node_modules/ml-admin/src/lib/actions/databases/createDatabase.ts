@@ -1,5 +1,5 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
 export interface RangePathIndex {
   'scalar-type': string
@@ -36,7 +36,7 @@ export interface DatabaseConfiguration {
   // TODO finish this
 }
 
-export function createDatabase(client:Client, config:DatabaseConfiguration):Promise<any> {
+export function createDatabase(client:DatabaseClient, config:DatabaseConfiguration):Promise<any> {
   return basicRestCall(client, '/manage/v2/databases', `createDatabase/${config['database-name']}`, 'POST', config, {
     'Content-Type': 'application/json'
   })

@@ -1,5 +1,5 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
 export interface Meta {
   // TOOD
@@ -21,6 +21,6 @@ export interface AppServerInfo {
   'related-views': RelatedViews
 }
 
-export function getAppServer(client: Client, name: string): Promise<AppServerInfo> {
+export function getAppServer(client: DatabaseClient, name: string): Promise<AppServerInfo> {
   return <Promise<AppServerInfo>> basicRestCall(client, `/manage/v2/servers/${name}?format=json`, `getAppServer/${name}`)
 }

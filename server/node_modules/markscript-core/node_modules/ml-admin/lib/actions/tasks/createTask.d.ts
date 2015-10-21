@@ -1,4 +1,4 @@
-import { Client } from 'marklogic';
+import { DatabaseClient } from 'marklogic';
 export interface TaskConfiguration {
     'task-enabled'?: boolean;
     'task-path': string;
@@ -12,4 +12,4 @@ export interface TaskConfiguration {
     'task-modules': string;
     'task-user': string;
 }
-export declare function createTask(client: Client, config: TaskConfiguration, groupId: string): Promise<any>;
+export declare function createTask(client: DatabaseClient, config: TaskConfiguration, groupId: string): Promise<any>;

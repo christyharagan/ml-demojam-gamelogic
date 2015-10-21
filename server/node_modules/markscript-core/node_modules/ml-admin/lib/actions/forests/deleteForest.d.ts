@@ -1,2 +1,2 @@
-import { Client } from 'marklogic';
-export declare function deleteForest(client: Client, name: string, configOnly?: boolean): Promise<any>;
+import { DatabaseClient } from 'marklogic';
+export declare function deleteForest(client: DatabaseClient, name: string, configOnly?: boolean): Promise<any>;

@@ -1,4 +1,4 @@
-import { Client } from 'marklogic';
+import { DatabaseClient } from 'marklogic';
 export interface Meta {
 }
 export interface Relations {
@@ -12,4 +12,4 @@ export interface RoleInfo {
     relations: Relations;
     'related-views': RelatedViews;
 }
-export declare function getRole(client: Client, name: string): Promise<RoleInfo>;
+export declare function getRole(client: DatabaseClient, name: string): Promise<RoleInfo>;

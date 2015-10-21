@@ -1,5 +1,5 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
 export interface Meta {
   // TOOD
@@ -21,6 +21,6 @@ export interface PrivilegeInfo {
   'related-views': RelatedViews
 }
 
-export function getRole(client: Client, name: string): Promise<PrivilegeInfo> {
+export function getRole(client: DatabaseClient, name: string): Promise<PrivilegeInfo> {
   return <Promise<PrivilegeInfo>>basicRestCall(client, `/manage/v2/privileges/${name}?format=json`, `getPrivilege/${name}`)
 }

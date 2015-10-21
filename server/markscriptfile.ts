@@ -1,61 +1,58 @@
-import {BuildOptions} from 'markscript-core'
-import {UServicesPlugin, UServicesBuildOptions} from 'markscript-uservices'
-import {MLGamescriptDemo} from './src/lib/databaseModel'
-import * as path from 'path'
-import {RunOptions} from 'markscript-project'
-import {clear} from './server'
-import {test} from './src/test/test'
+import {GameLogicDatabase} from './build/databaseModel'
+import {basicBuildPlugin} from 'markscript-basic-build'
+import {Runtime} from 'markscript-koa'
+import {uServicesPlugin} from 'markscript-uservices-build'
+import {test} from './test/test'
 
 const COMMON = {
   appName: 'ml-gamescript-demo',
   ml: {
+    host: 'christys-macbook-pro.local',
     port: 8012,
-    host: 'localhost',
     user: 'admin',
     password: 'passw0rd'
   },
   koa: {
     host: 'localhost',
-    port: 8080
+    port: 8081
   }
 }
 
-export const buildOptions: BuildOptions = {
-  database: {
-    host: COMMON.ml.host,
-    httpPort: COMMON.ml.port,
-    adminPort: 8001,
-    configPort: 8002,
-    user: COMMON.ml.user,
-    password: COMMON.ml.password,
-    modelObject: new MLGamescriptDemo(COMMON.appName, COMMON.ml.host, COMMON.ml.port),
-    modules: './src/lib/**/*.ts'
-  },
-  middle: {
-    host: COMMON.koa.host,
-    port: COMMON.koa.port
-  },
-  plugins: {
-    uservices: [UServicesPlugin, {}]
-  }
-}
-
-export const runOptions: RunOptions = {
-  database: {
-    host: COMMON.ml.host,
-    port: COMMON.ml.port,
-    name: COMMON.appName + '-content',
-    user: COMMON.ml.user,
-    password: COMMON.ml.password,
-  },
-  middle: {
-    host: COMMON.koa.host,
-    port: COMMON.koa.port,
+export const build: MarkScript.Build = {
+  buildConfig: <MarkScript.BuildConfig & MarkScript.BasicBuildConfig & MarkScript.KoaBuildConfig & MarkScript.UServicesBuildConfig>{
+    databaseConnection: {
+      host: COMMON.ml.host,
+      httpPort: COMMON.ml.port,
+      adminPort: 8001,
+      configPort: 8002,
+      user: COMMON.ml.user,
+      password: COMMON.ml.password,
+    },
+    database: {
+      modelObject: new GameLogicDatabase(COMMON.appName, COMMON.ml.port, COMMON.ml.host)
+    },
+    middle: {
+      host: COMMON.koa.host,
+      port: COMMON.koa.port
+    },
+    assetBaseDir: './src',
     fileServerPath: './www'
+  },
+  plugins: [basicBuildPlugin, uServicesPlugin],
+  runtime: Runtime,
+  tasks: {
+    clear: {
+      execute: function(buildModel: MarkScript.BuildModel, buildConfig: MarkScript.BuildConfig, runtime: Runtime) {
+        let preperationService = <GameLogic.PlayerService>runtime.getService('player')
+        return preperationService.prepare()
+      },
+      description: 'Clear player data before starting a new demo'
+    },
+    test: {
+      execute: function(buildModel: MarkScript.BuildModel, buildConfig: MarkScript.BuildConfig, runtime: Runtime) {
+        return test(runtime)
+      },
+      description: 'Server test to ensure everything works as expected'
+    }
   }
-}
-
-export const tasks = {
-  clear: clear,
-  test: test
 }

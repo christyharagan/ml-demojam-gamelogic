@@ -1,4 +1,4 @@
-import { Client } from 'marklogic';
+import { DatabaseClient } from 'marklogic';
 export interface RangePathIndex {
     'scalar-type': string;
     'path-expression': string;
@@ -29,4 +29,4 @@ export interface DatabaseConfiguration {
     'collection-lexicon'?: boolean;
     'default-ruleset'?: RuleSet[];
 }
-export declare function createDatabase(client: Client, config: DatabaseConfiguration): Promise<any>;
+export declare function createDatabase(client: DatabaseClient, config: DatabaseConfiguration): Promise<any>;

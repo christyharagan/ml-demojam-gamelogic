@@ -1,5 +1,5 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
 export interface Meta {
   // TOOD
@@ -24,6 +24,6 @@ export interface UsersInfo {
   'list-items': ListItems
 }
 
-export function getUsers(client: Client, name: string): Promise<UsersInfo> {
+export function getUsers(client: DatabaseClient, name: string): Promise<UsersInfo> {
   return <Promise<UsersInfo>> basicRestCall(client, `/manage/v2/users?format=json`, `getUsers`)
 }

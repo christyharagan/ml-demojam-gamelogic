@@ -1,5 +1,5 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
 export interface ForestConfiguration {
   'forest-name': string
@@ -12,7 +12,7 @@ export interface ForestConfiguration {
   // TODO finish this
 }
 
-export function createForest(client:Client, config:ForestConfiguration):Promise<any> {
+export function createForest(client:DatabaseClient, config:ForestConfiguration):Promise<any> {
   return basicRestCall(client, '/manage/v2/forests', `createForest/${config['forest-name']}`, 'POST', config, {
     'Content-Type': 'application/json'
   })

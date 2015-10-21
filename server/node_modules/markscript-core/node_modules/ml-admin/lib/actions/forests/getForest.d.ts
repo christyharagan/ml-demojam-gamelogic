@@ -1,4 +1,4 @@
-import { Client } from 'marklogic';
+import { DatabaseClient } from 'marklogic';
 export interface Meta {
 }
 export interface Relations {
@@ -12,4 +12,4 @@ export interface ForestInfo {
     relations: Relations;
     'related-views': RelatedViews;
 }
-export declare function getForest(client: Client, name: string): Promise<ForestInfo>;
+export declare function getForest(client: DatabaseClient, name: string): Promise<ForestInfo>;

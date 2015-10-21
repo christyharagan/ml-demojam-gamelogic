@@ -1,2 +1,2 @@
-import { Client } from 'marklogic';
-export declare function deletePrivilege(client: Client, name: string): Promise<any>;
+import { DatabaseClient } from 'marklogic';
+export declare function deletePrivilege(client: DatabaseClient, name: string): Promise<any>;

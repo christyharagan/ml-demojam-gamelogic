@@ -1,5 +1,5 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
 export interface Meta {
   // TOOD
@@ -21,6 +21,6 @@ export interface ForestInfo {
   'related-views': RelatedViews
 }
 
-export function getForest(client: Client, name: string): Promise<ForestInfo> {
+export function getForest(client: DatabaseClient, name: string): Promise<ForestInfo> {
   return <Promise<ForestInfo>> basicRestCall(client, `/manage/v2/forests/${name}?format=json`, `getForest/${name}`)
 }

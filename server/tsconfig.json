@@ -1,43 +1,31 @@
 {
     "compilerOptions": {
-        "emitDecoratorMetadata": false,
-        "module": "commonjs",
-        "noImplicitAny": false,
-        "noLib": false,
-        "rootDir": ".",
-        "sourceMap": true,
-        "sourceRoot": ".",
-        "target": "ES5",
-        "outDir": "./dist",
-        "experimentalDecorators": true,
-        "moduleResolution": "node"
+        "target": "es6",
+        "outDir": ".",
+        "moduleResolution": "classic"
     },
-    "compileOnSave": false,
     "formatCodeOptions": {
         "indentSize": 2,
         "tabSize": 2
     },
+    "compileOnSave": false,
     "filesGlob": [
-        "./markscriptfile.ts",
-        "./server.ts",
-        "./src/**/*.ts",
-        "./node_modules/ml-typescript-definitions/*.d.ts",
-        "./typings/**/*.d.ts",
-        "./example/**/*.ts",
-        "./test/**/*.ts"
+        "api.d.ts",
+        "markscriptfile.ts",
+        "build/*.ts",
+        "test/*.ts",
+        "typings/**/*.d.ts",
+        "node_modules/*/build.d.ts"
     ],
     "files": [
-        "./markscriptfile.ts",
-        "./server.ts",
-        "./src/lib/databaseModel.ts",
-        "./src/lib/models/scores.ts",
-        "./src/lib/services/leaderboardService.ts",
-        "./src/lib/services/playerService.ts",
-        "./src/test/test.ts",
-        "./node_modules/ml-typescript-definitions/client.d.ts",
-        "./node_modules/ml-typescript-definitions/server.d.ts",
-        "./typings/es6/es6.d.ts",
-        "./typings/node/node.d.ts",
-        "./typings/tsd.d.ts"
-    ]
+        "api.d.ts",
+        "markscriptfile.ts",
+        "build/databaseModel.ts",
+        "test/test.ts",
+        "node_modules/markscript-basic-build/build.d.ts",
+        "node_modules/markscript-core/build.d.ts",
+        "node_modules/markscript-koa/build.d.ts",
+        "node_modules/markscript-uservices-build/build.d.ts"
+    ],
+    "exclude": []
 }

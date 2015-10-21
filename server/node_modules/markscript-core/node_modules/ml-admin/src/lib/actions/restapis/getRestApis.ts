@@ -1,7 +1,7 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 import {RestApisInfo} from './getRestApi'
 
-export function getRestApis(client: Client, name: string): Promise<RestApisInfo> {
+export function getRestApis(client: DatabaseClient, name: string): Promise<RestApisInfo> {
   return <Promise<RestApisInfo>> basicRestCall(client, `/LATEST/rest-apis`, `getRestApis`)
 }

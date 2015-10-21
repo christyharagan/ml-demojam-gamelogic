@@ -1,6 +1,6 @@
 require('should');
 require('should-promised');
-var adminClient_1 = require('../../../lib/adminClient');
+var createTestClient_1 = require('../../createTestClient');
 var getLastRestartTimestamp_1 = require('../../../lib/actions/admin/getLastRestartTimestamp');
 describe('getLastRestartTimestamp', function () {
     it('should return a valid timestamp', function () {
@@ -8,11 +8,7 @@ describe('getLastRestartTimestamp', function () {
     });
 });
 function returnAValidTimeStamp() {
-    var connectionParams = {
-        password: 'passw0rd'
-    };
-    var client = adminClient_1.createAdminClient(connectionParams);
-    return getLastRestartTimestamp_1.getLastRestartTimestamp(client);
+    return getLastRestartTimestamp_1.getLastRestartTimestamp(createTestClient_1.createTestClient());
 }
 exports.returnAValidTimeStamp = returnAValidTimeStamp;
 //# sourceMappingURL=getLastRestartTimestampTest.js.map

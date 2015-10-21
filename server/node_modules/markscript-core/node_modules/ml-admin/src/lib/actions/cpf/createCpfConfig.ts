@@ -1,5 +1,5 @@
 import {basicRestCall, createUrl} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
 export interface DocumentConfiguration {
   uri: string
@@ -12,7 +12,7 @@ export interface DocumentConfiguration {
   // TODO finish this
 }
 
-export function createDocument(client: Client, config: DocumentConfiguration, content): Promise<any> {
+export function createDocument(client: DatabaseClient, config: DocumentConfiguration, content): Promise<any> {
   return new Promise(function(resolve, reject) {
     client.eval(`declareUpdate();xdmp.documentInsert('${config.uri}', content);`).result(resolve, reject)
   })

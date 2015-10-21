@@ -1,5 +1,5 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
 export interface Permission {
   'role-name': string
@@ -16,6 +16,6 @@ export interface UserConfiguration {
   collections?: string[]
 }
 
-export function createUser(client: Client, config: UserConfiguration): Promise<any> {
+export function createUser(client: DatabaseClient, config: UserConfiguration): Promise<any> {
   return basicRestCall(client, '/manage/v2/users', `createUser/${config['user-name']}`, 'POST', config)
 }

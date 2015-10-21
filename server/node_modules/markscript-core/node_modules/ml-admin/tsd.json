@@ -5,9 +5,6 @@
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
   "installed": {
-    "node/node.d.ts": {
-      "commit": "43b6bf88758852b9ab713a9b011487f047f94f4e"
-    },
     "mocha/mocha.d.ts": {
       "commit": "101a5daef4fc42eca0d447ba5d080248f80daf90"
     },
@@ -16,6 +13,9 @@
     },
     "should-promised/should-promised.d.ts": {
       "commit": "101a5daef4fc42eca0d447ba5d080248f80daf90"
+    },
+    "node/node.d.ts": {
+      "commit": "d6c98baa7fd703e449cf37f3ec39ed3bd92cfd35"
     }
   }
 }

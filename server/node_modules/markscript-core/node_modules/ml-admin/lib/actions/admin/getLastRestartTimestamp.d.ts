@@ -1,2 +1,2 @@
-import { Client } from 'marklogic';
-export declare function getLastRestartTimestamp(client: Client): Promise<Date>;
+import { DatabaseClient } from 'marklogic';
+export declare function getLastRestartTimestamp(client: DatabaseClient): Promise<Date>;

@@ -1,4 +1,4 @@
-import { Client } from 'marklogic';
+import { DatabaseClient } from 'marklogic';
 export interface AppServerConfiguration {
     'server-name': string;
     'server-type': string;
@@ -14,4 +14,4 @@ export interface AppServerConfiguration {
     'url-rewriter'?: string;
     'rewrite-resolves-globally'?: boolean;
 }
-export declare function createAppServer(client: Client, config: AppServerConfiguration): Promise<any>;
+export declare function createAppServer(client: DatabaseClient, config: AppServerConfiguration): Promise<any>;

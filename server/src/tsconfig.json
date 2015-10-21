@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "outDir": "..",
+        "moduleResolution": "node"
+    },
+    "formatCodeOptions": {
+        "indentSize": 2,
+        "tabSize": 2
+    },
+    "filesGlob": [
+        "../api.d.ts",
+        "./lib/**/*.ts",
+        "../node_modules/markscript-core/model.d.ts",
+        "../node_modules/marklogic-typescript-definitions/ts/index.d.ts"
+    ],
+    "compileOnSave": false,
+    "files": [
+        "../api.d.ts",
+        "lib/services/playerService.ts",
+        "../node_modules/markscript-core/model.d.ts",
+        "../node_modules/marklogic-typescript-definitions/ts/index.d.ts"
+    ],
+    "exclude": []
+}

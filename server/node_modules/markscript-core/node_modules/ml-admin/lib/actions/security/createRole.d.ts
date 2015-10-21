@@ -1,4 +1,4 @@
-import { Client } from 'marklogic';
+import { DatabaseClient } from 'marklogic';
 export interface Permission {
     'role-name': string;
     capability: string;
@@ -18,4 +18,4 @@ export interface RoleConfiguration {
     externalNames?: string[];
     collections?: string[];
 }
-export declare function createRole(client: Client, config: RoleConfiguration): Promise<any>;
+export declare function createRole(client: DatabaseClient, config: RoleConfiguration): Promise<any>;

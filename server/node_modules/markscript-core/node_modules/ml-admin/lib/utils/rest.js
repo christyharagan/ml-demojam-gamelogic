@@ -1,4 +1,5 @@
-var mlrest_1 = require('marklogic/lib/mlrest');
+var Operation = require('marklogic/lib/operation');
+var requester_1 = require('marklogic/lib/requester');
 function createUrl(path, parameters) {
     path += '?';
     Object.keys(parameters).forEach(function (name) {
@@ -23,15 +24,15 @@ function basicRestCall(client, endpoint, description, method, body, headers) {
         path: endpoint,
         headers: headers
     };
-    Object.keys(client.connectionParams).forEach(function (key) {
-        requestOptions[key] = client.connectionParams[key];
+    Object.keys(client['connectionParams']).forEach(function (key) {
+        requestOptions[key] = client['connectionParams'][key];
     });
-    var operation = mlrest_1.createOperation(description, client, requestOptions, 'single', 'single');
+    var operation = new Operation(description, client, requestOptions, 'single', 'single');
     if (body !== undefined) {
         operation.requestBody = body;
     }
     return new Promise(function (resolve, reject) {
-        mlrest_1.startRequest(operation).result(resolve, reject);
+        return requester_1.startRequest(operation).result(resolve, reject);
     });
 }
 exports.basicRestCall = basicRestCall;

@@ -1,4 +1,4 @@
-import { Client } from 'marklogic';
+import { DatabaseClient } from 'marklogic';
 export interface ForestConfiguration {
     'forest-name': string;
     host: string;
@@ -7,4 +7,4 @@ export interface ForestConfiguration {
     'large-data-directory'?: string;
     'fast-data-directory'?: string;
 }
-export declare function createForest(client: Client, config: ForestConfiguration): Promise<any>;
+export declare function createForest(client: DatabaseClient, config: ForestConfiguration): Promise<any>;

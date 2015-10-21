@@ -1,5 +1,5 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
 export interface AppServerConfiguration {
   'server-name': string
@@ -19,7 +19,7 @@ export interface AppServerConfiguration {
   // TODO finish this
 }
 
-export function createAppServer(client:Client, config:AppServerConfiguration):Promise<any> {
+export function createAppServer(client:DatabaseClient, config:AppServerConfiguration):Promise<any> {
   return basicRestCall(client, '/manage/v2/servers', `createAppServer/${config['server-name']}`, 'POST', config, {
     'Content-Type': 'application/json'
   })

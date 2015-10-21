@@ -1,4 +1,4 @@
-import { Client } from 'marklogic';
+import { DatabaseClient } from 'marklogic';
 export interface DocumentConfiguration {
     uri: string;
     category?: string | string[];
@@ -7,4 +7,4 @@ export interface DocumentConfiguration {
     collection?: string | string[];
     quality?: number;
 }
-export declare function createDocument(client: Client, config: DocumentConfiguration, content: any): Promise<any>;
+export declare function createDocument(client: DatabaseClient, config: DocumentConfiguration, content: any): Promise<any>;

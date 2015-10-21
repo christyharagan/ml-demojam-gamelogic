@@ -1,4 +1,4 @@
-import { Client } from 'marklogic';
+import { DatabaseClient } from 'marklogic';
 export interface Meta {
 }
 export interface Relations {
@@ -12,4 +12,4 @@ export interface AppServerInfo {
     relations: Relations;
     'related-views': RelatedViews;
 }
-export declare function getAppServer(client: Client, name: string): Promise<AppServerInfo>;
+export declare function getAppServer(client: DatabaseClient, name: string): Promise<AppServerInfo>;

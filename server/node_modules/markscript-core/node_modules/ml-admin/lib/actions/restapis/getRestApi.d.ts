@@ -1,4 +1,4 @@
-import { Client } from 'marklogic';
+import { DatabaseClient } from 'marklogic';
 export interface RestApiInfo {
     name: string;
     group: string;
@@ -9,4 +9,4 @@ export interface RestApiInfo {
 export interface RestApisInfo {
     'rest-apis': RestApiInfo[];
 }
-export declare function getRestApi(client: Client, name: string): Promise<RestApisInfo>;
+export declare function getRestApi(client: DatabaseClient, name: string): Promise<RestApisInfo>;

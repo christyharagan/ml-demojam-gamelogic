@@ -1,4 +1,5 @@
-import { Client } from 'marklogic';
-import { Headers } from 'marklogic/lib/mlrest';
+import { DatabaseClient } from 'marklogic';
 export declare function createUrl(path: string, parameters: Object): string;
-export declare function basicRestCall(client: Client, endpoint: string, description: string, method?: string, body?: any, headers?: Headers): Promise<any>;
+export declare function basicRestCall(client: DatabaseClient, endpoint: string, description: string, method?: string, body?: any, headers?: {
+    [header: string]: string;
+}): Promise<any>;

@@ -187,12 +187,13 @@ var RemoteProxy = (function () {
             args[_i - 1] = arguments[_i];
         }
         var ret = xdmp.httpPost(this.uri + '-' + methodName, this.options, args).toArray();
-        if (ret[0].code === 200) {
+        var status = ret[0];
+        if (status.code === 200) {
             var value = ret[1].toObject();
             return resolve(value);
         }
         else {
-            return reject(ret[0].message);
+            return reject(status.message);
         }
     };
     return RemoteProxy;

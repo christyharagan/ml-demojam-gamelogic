@@ -8,27 +8,21 @@
     "email": "christy.haragan.github@gmail.com",
     "url": "https://github.com/christyharagan"
   },
-  "scripts": {
-    "create": "node --harmony bin/build.js create",
-    "remove": "node --harmony bin/build.js remove",
-    "deploy": "node --harmony bin/build.js deploy",
-    "undeploy": "node --harmony bin/build.js undeploy",
-    "loadData": "node --harmony bin/build.js task loadData",
-    "test": "node --harmony bin/build.js task test",
-    "run": "node --harmony bin/build.js run"
-  },
   "keywords": [
     "marklogic",
-    "demo",
-    "nordic"
+    "demojam",
+    "gamelogic"
   ],
   "license": "MIT",
   "dependencies": {
-    "markscript-core": "^0.3.3",
-    "markscript-koa": "^0.3.0",
-    "markscript-project": "^0.3.1",
-    "markscript-uservices": "^0.3.0",
-    "ml-typescript-definitions": "^0.3.0",
-    "uservices": "^0.6.1"
+    "marklogic-typescript-definitions": "^0.3.1",
+    "markscript-basic": "^0.2.0",
+    "markscript-koa": "^0.5.0",
+    "markscript-uservices": "^0.5.2"
+  },
+  "devDependencies": {
+    "markscript-basic-build": "^0.2.0",
+    "markscript-core": "^0.6.0",
+    "markscript-uservices-build": "^0.1.2"
   }
 }

@@ -1,4 +1,4 @@
-import { Client } from 'marklogic';
+import { DatabaseClient } from 'marklogic';
 export interface Meta {
 }
 export interface Relations {
@@ -12,4 +12,4 @@ export interface UserInfo {
     relations: Relations;
     'related-views': RelatedViews;
 }
-export declare function getUser(client: Client, name: string): Promise<UserInfo>;
+export declare function getUser(client: DatabaseClient, name: string): Promise<UserInfo>;

@@ -1,7 +1,7 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
-export function deleteRestApi(client: Client, name: string, removeContent?: boolean, removeModules?: boolean): Promise<any> {
+export function deleteRestApi(client: DatabaseClient, name: string, removeContent?: boolean, removeModules?: boolean): Promise<any> {
   let parameters = ''
   if (removeContent || removeModules) {
     parameters = '?'
@@ -12,6 +12,6 @@ export function deleteRestApi(client: Client, name: string, removeContent?: bool
       parameters += '&include=modules'
     }
   }
-  
+
   return basicRestCall(client, `/LATEST/rest-apis/${name}${parameters}`, `deleteRestApi/${name}`, 'DELETE')
 }

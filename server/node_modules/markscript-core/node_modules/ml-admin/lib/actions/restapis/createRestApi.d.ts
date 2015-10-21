@@ -1,4 +1,4 @@
-import { Client } from 'marklogic';
+import { DatabaseClient } from 'marklogic';
 export interface RestApiConfiguration {
     name: string;
     group?: string;
@@ -9,4 +9,4 @@ export interface RestApiConfiguration {
     port?: number;
     'xdbc-enabled'?: boolean;
 }
-export declare function createRestApi(client: Client, config: RestApiConfiguration): Promise<any>;
+export declare function createRestApi(client: DatabaseClient, config: RestApiConfiguration): Promise<any>;

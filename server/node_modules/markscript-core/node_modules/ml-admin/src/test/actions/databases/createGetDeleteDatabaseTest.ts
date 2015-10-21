@@ -1,7 +1,7 @@
 require('should')
 require('should-promised')
 
-import {createAdminClient, AdminConnectionParams} from '../../../lib/adminClient'
+import {createTestClient} from '../../createTestClient'
 import {createDatabase} from '../../../lib/actions/databases/createDatabase'
 import {getDatabase} from '../../../lib/actions/databases/getDatabase'
 import {deleteDatabase} from '../../../lib/actions/databases/deleteDatabase'
@@ -15,10 +15,7 @@ describe('create, get, and delete database', function() {
 })
 
 export function createANewDatabase() {
-  let connectionParams: AdminConnectionParams = {
-    password: 'passw0rd'
-  }
-  let client = createAdminClient(connectionParams)
+  let client = createTestClient()
 
   return getDatabase(client, TEST_DATABASE).then(function() {
     throw 'Test Database should not exist before calling tests'

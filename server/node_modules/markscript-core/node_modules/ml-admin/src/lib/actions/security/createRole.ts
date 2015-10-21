@@ -1,5 +1,5 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
 export interface Permission {
   'role-name': string
@@ -23,6 +23,6 @@ export interface RoleConfiguration {
   collections?: string[]
 }
 
-export function createRole(client: Client, config: RoleConfiguration): Promise<any> {
+export function createRole(client: DatabaseClient, config: RoleConfiguration): Promise<any> {
   return basicRestCall(client, '/manage/v2/roles', `createRole/${config['role-name']}`, 'POST', config)
 }

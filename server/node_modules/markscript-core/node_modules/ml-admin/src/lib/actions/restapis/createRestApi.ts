@@ -1,5 +1,5 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
 export interface RestApiConfiguration {
   name: string
@@ -12,6 +12,6 @@ export interface RestApiConfiguration {
   'xdbc-enabled'? : boolean
 }
 
-export function createRestApi(client:Client, config:RestApiConfiguration):Promise<any> {
+export function createRestApi(client:DatabaseClient, config:RestApiConfiguration):Promise<any> {
   return basicRestCall(client, '/LATEST/rest-apis', `createRestApi/${config.name}`, 'POST', config)
 }

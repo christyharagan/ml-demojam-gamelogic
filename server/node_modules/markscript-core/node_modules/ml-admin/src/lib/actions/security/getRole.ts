@@ -1,5 +1,5 @@
 import {basicRestCall} from '../../utils/rest'
-import {Client} from 'marklogic'
+import {DatabaseClient} from 'marklogic'
 
 export interface Meta {
   // TOOD
@@ -21,6 +21,6 @@ export interface RoleInfo {
   'related-views': RelatedViews
 }
 
-export function getRole(client: Client, name: string): Promise<RoleInfo> {
+export function getRole(client: DatabaseClient, name: string): Promise<RoleInfo> {
   return <Promise<RoleInfo>>basicRestCall(client, `/manage/v2/roles/${name}?format=json`, `getRole/${name}`)
 }

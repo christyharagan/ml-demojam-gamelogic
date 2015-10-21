@@ -1,6 +1,6 @@
 function OnNextPredicate(predicate) {
     this.predicate = predicate;
-};
+}
 
 OnNextPredicate.prototype.equals = function (other) {
   if (other === this) { return true; }
@@ -11,13 +11,13 @@ OnNextPredicate.prototype.equals = function (other) {
 
 function OnErrorPredicate(predicate) {
   this.predicate = predicate;
-};
+}
 
 OnErrorPredicate.prototype.equals = function (other) {
   if (other === this) { return true; }
   if (other == null) { return false; }
   if (other.kind !== 'E') { return false; }
-  return this.predicate(other.exception);
+  return this.predicate(other.error);
 };
 
 var ReactiveTest = Rx.ReactiveTest = {

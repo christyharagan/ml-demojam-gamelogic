@@ -1,6 +1,6 @@
 require('should');
 require('should-promised');
-var adminClient_1 = require('../../../lib/adminClient');
+var createTestClient_1 = require('../../createTestClient');
 var createDatabase_1 = require('../../../lib/actions/databases/createDatabase');
 var getDatabase_1 = require('../../../lib/actions/databases/getDatabase');
 var deleteDatabase_1 = require('../../../lib/actions/databases/deleteDatabase');
@@ -11,10 +11,7 @@ describe('create, get, and delete database', function () {
     });
 });
 function createANewDatabase() {
-    var connectionParams = {
-        password: 'passw0rd'
-    };
-    var client = adminClient_1.createAdminClient(connectionParams);
+    var client = createTestClient_1.createTestClient();
     return getDatabase_1.getDatabase(client, TEST_DATABASE).then(function () {
         throw 'Test Database should not exist before calling tests';
     }).catch(function () {
